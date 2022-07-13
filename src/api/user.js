@@ -2,17 +2,17 @@ import request from '@/utils/request'
 
 /**
  *
- * @param {String} mobile
- * @param {String} code
+ * @param {String} username
+ * @param {String} password
  * @returns //promise
  */
-export const login = (mobile, code) => {
+export const login = (username, password) => {
   return request({
-    url: '/v1_0/authorizations',
+    url: '/user/login',
     method: 'POST',
     data: {
-      mobile,
-      code
+      username,
+      password
     }
   })
 }

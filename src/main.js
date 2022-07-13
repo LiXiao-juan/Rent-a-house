@@ -2,10 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vant from 'vant'
+import Vant, { Lazyload } from 'vant'
 import 'vant/lib/index.css'
 // 引入rem适配
 import 'amfe-flexible/index.min.js'
+
+Vue.use(Lazyload)
 Vue.use(Vant)
 Vue.config.productionTip = false
 
