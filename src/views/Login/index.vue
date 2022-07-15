@@ -49,16 +49,23 @@ export default {
     },
     backBtn () {
       this.$router.back()
+      // location.reload()
     },
     async login () {
       try {
         const { data } = await login(this.username, this.password)
         this.$store.commit('setUser', data.body.token)
-        this.$toast.success('登录成功')
-        // 登录成功路由跳转到首页
-        this.$router.push({
-          path: '/layout/home'
+        this.$toast.loading({
+          message: '加载中...',
+          forbidClick: true
         })
+        setTimeout(() => {
+          // 登录成功路由跳转到我的
+          this.$router.push({
+            path: '/layout/my'
+          })
+          this.$toast.success('登录成功')
+        }, 1000)
       } catch (error) {
         console.log(error)
       }

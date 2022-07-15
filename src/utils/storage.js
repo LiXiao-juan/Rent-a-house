@@ -23,5 +23,5 @@ export const getItem = key => {
 // 删除数据
 
 export const delItem = key => {
-  window.removeItem(key)
+  window.localStorage.removeItem(key)
 }

@@ -34,6 +34,28 @@ const routes = [
         component: () => import('@/views/News')
       }
     ]
+  },
+  {
+    path: '/favorites',
+    component: () => import('@/views/Favorites')
+  },
+  {
+    path: '/rent',
+    component: () => import('@/views/Rent'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/Rent/Rent.vue')
+      },
+      {
+        path: 'add',
+        component: () => import('@/views/Rent/add')
+      }
+    ]
+  },
+  {
+    path: '/city',
+    component: () => import('@/views/Address')
   }
 ]
 

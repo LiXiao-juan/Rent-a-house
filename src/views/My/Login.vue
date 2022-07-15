@@ -1,0 +1,209 @@
+  <template>
+    <div>
+      <div v-if="isLogin">
+        <img class="My_bg__2j-VX" :src="`http://liufusong.top:8080${user.avatar}`" alt="背景图">
+
+      <!-- 登录的白色大盒子 -->
+      <div class="My_info__eOYeg">
+        <!-- 头像框 -->
+        <div class="My_myIcon__3cKIV">
+          <img :src="`http://liufusong.top:8080${user.avatar}`" alt="" class="My_avatar__2Fbh7">
+        </div>
+        <!-- 网名 -->
+        <div class="My_name__3U2NB">{{user.nickname}}</div>
+        <van-button round type="primary" size="mini" @click="delToken">退出</van-button>
+        <div class="My_edit__3wqlv">编辑个人资料
+          <van-icon name="play" />
+        </div>
+      </div>
+      </div>
+
+      <div>
+        <!-- 菜单栏 -->
+      <van-row gutter="50" type="flex" justify="center" >
+        <van-col span="8">
+          <div @click="collect">
+            <van-icon name="like-o" />
+            <p>我的收藏</p>
+          </div>
+          </van-col>
+        <van-col span="8" @click="rentFn">
+          <div>
+          <van-icon name="wap-home-o" />
+            <p>我的出租</p>
+          </div>
+        </van-col>
+        <van-col span="8">
+          <div>
+          <van-icon name="clock-o" />
+          <p>看房记录</p>
+          </div>
+        </van-col>
+        <van-col span="8">
+          <div>
+          <van-icon name="credit-pay" />
+          <p>成为房主</p>
+          </div>
+        </van-col>
+        <van-col span="8">
+          <div>
+          <van-icon name="contact" />
+          <p>个人资料</p>
+          </div>
+        </van-col>
+        <van-col span="8">
+          <div>
+          <van-icon name="service-o" />
+          <p>联系我们</p>
+          </div>
+        </van-col>
+      </van-row>
+      </div>
+
+    </div>
+  </template>
+
+<script>
+import { userInfo } from '@/api/my'
+export default {
+  data () {
+    return {
+      user: {},
+      isLogin: false
+    }
+  },
+  async created () {
+    const token = this.$store.state.token
+    // this.$store.dispatch('getUser', payload)
+    // 判断是否登录
+    if (token) {
+      this.isLogin = true
+      const res = await userInfo(token)
+      this.user = res.data.body
+    } else {
+      this.isLogin = false
+    }
+  },
+  methods: {
+    // 收藏
+    collect () {
+      const token = this.$store.state.token
+      if (token) {
+        this.$router.push({
+          path: '/favorites'
+        })
+      } else {
+        this.$router.push({
+          path: '/login'
+        })
+      }
+    },
+    // 退出登录
+    delToken () {
+      this.$dialog.confirm({
+        title: '退出',
+        message: '是否退出登录'
+      })
+        .then(() => {
+          // on confirm
+          this.$store.commit('delUser')
+          // 退出后强制刷新页面
+          location.reload()
+
+          this.$toast.success('已退出')
+        })
+        .catch(() => {
+          // on cancel
+        })
+    },
+    // 出租
+    rentFn () {
+      const token = this.$store.state.token
+      if (token) {
+        this.$router.push({
+          path: '/rent'
+        })
+      } else {
+        this.$router.push({
+          path: '/login'
+        })
+      }
+    }
+
+  }
+}
+</script>
+
+<style scoped lang="less">
+.My_bg__2j-VX{
+  width: 100%;
+}
+.My_info__eOYeg{
+    position: absolute;
+    background: #fff;
+    width: 85%;
+    height: 35%;
+    bottom: 525px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px 3px #ddd;
+    margin: 50px auto 0;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 13px;
+    .My_myIcon__3cKIV{
+    position: relative;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    border: 5px solid #f5f5f5;
+    display: inline-block;
+    box-shadow: 0 2px 2px #bdbdbd;
+    .My_avatar__2Fbh7 {
+    width: 100%;
+    border-radius: 50%;
+}
+    }
+    // 网名样式
+    .My_name__3U2NB {
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+:deep(.van-button--mini) {
+    height: 48px;
+    padding: 20px 20px;
+    font-size: 10px;
+}
+.My_edit__3wqlv {
+    color: #999;
+    font-size: 12px;
+    margin-top: 20px;
+}
+}
+.van-row{
+  margin-top: 90px;
+  margin-left: 45px;
+  margin-right: 45px;
+  .van-col--8{
+    margin-bottom: 100px;
+    div{
+      text-align: center;
+      .van-icon{
+        text-align: center;
+      }
+      p{
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+}
+.My_ad__1wZZj {
+    text-align: center;
+    margin-top: 10px;
+    .My_ad__1wZZj img {
+    width: 92%;
+}
+}
+</style>

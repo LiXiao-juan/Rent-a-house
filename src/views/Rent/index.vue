@@ -1,22 +1,16 @@
 <template>
   <div>
-    <!-- 一级路由 -->
+    <!-- 二级路由 -->
     <router-view></router-view>
   </div>
 </template>
+
 <script>
 export default {
-  data () {
-    return {
 
-    }
-  }
 }
 </script>
 
 <style>
-*{
-  margin: 0;
-  padding: 0;
-}
+
 </style>

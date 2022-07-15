@@ -1,21 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { setItem, getItem } from '@/utils/storage.js'
+import { setItem, getItem, delItem } from '@/utils/storage.js'
 Vue.use(Vuex)
-const TOKEN_KEY = 'TOUTIAO_USER'
+const TOKEN_KEY = 'HAOKE_USER'
 export default new Vuex.Store({
   state: {
     // 用户的登录状态信息
-    user: getItem(TOKEN_KEY)
-    // user: null
+    token: getItem(TOKEN_KEY)
   },
   mutations: {
     setUser (state, user) {
-      state.user = user
-      setItem(TOKEN_KEY, state.user)
+      state.token = user
+      setItem(TOKEN_KEY, state.token)
+    },
+    delUser () {
+      delItem(TOKEN_KEY)
     }
+
   },
   actions: {
+    getUser (context, value) {
+    }
   },
   modules: {
   }
