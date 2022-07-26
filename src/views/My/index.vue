@@ -4,9 +4,9 @@
       <component :is="comName"></component>
     </template>
     <!-- 底部图片 -->
-      <div class="pic">
-        <img src="http://liufusong.top:8080/img/profile/join.png" alt="">
-      </div>
+    <div class="pic">
+      <img src="http://liufusong.top:8080/img/profile/join.png" alt="" />
+    </div>
   </div>
 </template>
 
@@ -14,14 +14,23 @@
 import Login from '@/views/My/Login.vue'
 import noLogin from '@/views/My/noLogin.vue'
 export default {
-  data () {
+  data() {
     return {
-      comName: ''
+      comName: '',
+      token: ''
     }
   },
-  created () {
-    // location.reload()
-    if (this.$store.state.token) {
+  created() {
+    this.token = this.$store.state.token
+    this.$toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      duration: 3000
+    })
+  },
+  mounted() {
+    if (this.token) {
+      this.$toast.clear()
       this.comName = 'Login'
     } else {
       this.comName = 'noLogin'
@@ -35,12 +44,11 @@ export default {
 </script>
 
 <style scoped lang="less">
-.pic{
-    text-align: center;
-    margin-top: 10px;
-    img{
-      width: 92%
-    }
+.pic {
+  text-align: center;
+  margin-top: 10px;
+  img {
+    width: 92%;
+  }
 }
-
 </style>

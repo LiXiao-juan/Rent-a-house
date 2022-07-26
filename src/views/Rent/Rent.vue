@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <Header title="房屋管理"></Header>
 <van-cell-group>
   <van-cell v-for="(item,index) in fList" :key="index">
@@ -38,8 +38,16 @@ export default {
     Header
   },
   async created () {
+    // 提示加载中
+    this.$toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      duration: 100000
+    })
     try {
       const res = await rent(this.$store.state.token)
+      // 请求到数据后清除加载提示
+      this.$toast.clear()
       this.fList = res.data.body
       console.log(this.fList)
     } catch (error) {
@@ -55,6 +63,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.body{
+  padding-top: 95px;
+}
 .navbar1{
     background-color: #21b97a;
    :deep(.van-nav-bar__title){

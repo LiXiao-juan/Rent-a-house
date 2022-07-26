@@ -142,8 +142,8 @@ export default {
     position: absolute;
     background: #fff;
     width: 85%;
-    height: 35%;
-    bottom: 525px;
+    height: 30%;
+    bottom: 770px;
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px 3px #ddd;

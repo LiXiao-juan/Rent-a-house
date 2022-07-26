@@ -1,7 +1,7 @@
 import request from '@/utils/request'
-export const getRegion = (id) => {
+export const getHouseData = (id) => {
   return request({
-    url: '/houses/condition',
+    url: '/area/map',
     params: {
       id
     }

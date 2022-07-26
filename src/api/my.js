@@ -29,3 +29,9 @@ export const rent = (token) => {
     }
   })
 }
+
+export const detail = (id) => {
+  return request({
+    url: `/houses/${id}`
+  })
+}

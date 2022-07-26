@@ -10,3 +10,11 @@ export const getCityList = () => {
     }
   })
 }
+
+// 获取热门城市列表
+export const HotCity = () => {
+  return request({
+    method: 'GET',
+    url: '/area/hot'
+  })
+}

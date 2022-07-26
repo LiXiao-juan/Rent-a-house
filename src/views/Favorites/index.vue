@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="body">
     <Header title="收藏列表"></Header>
 <van-cell-group>
-  <van-cell v-for="(item,index) in fList" :key="index">
+  <van-cell v-for="(item,index) in fList" :key="index" @click="toDetails(item.houseCode)">
     <!-- 左边图片 -->
     <div class="enjoy">
       <van-image
@@ -41,7 +41,7 @@ export default {
     try {
       const res = await collect(this.$store.state.token)
       this.fList = res.data.body
-      console.log(this.fList)
+      // console.log(this.fList)
     } catch (error) {
       console.log(error)
     }
@@ -49,13 +49,19 @@ export default {
   methods: {
     onClickLeft () {
       this.$router.back()
+    },
+    toDetails (id) {
+      this.$store.commit('setHouseId', id)
+      this.$router.push('/detail')
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-
+.body{
+  padding-top: 100px;
+}
 .enjoy{
   display: flex;
   .box{

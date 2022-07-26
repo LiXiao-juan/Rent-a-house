@@ -7,12 +7,12 @@
     show-action
   >
   <template #label>
-    <div @click="address" class="address">杭州
+    <div @click="address" class="address">{{$store.state.city.label}}
     <van-icon name="arrow-down" /></div>
   </template>
 
    <template #action>
-    <div class="round">
+    <div class="round" @click="toMap">
       <van-icon name="location-o" />
     </div>
   </template>
@@ -21,24 +21,26 @@
 </template>
 
 <script>
-import { getCityList } from '@/api/city'
 export default {
+  name: 'Search',
   data () {
     return {
       value: ''
     }
   },
   methods: {
-    async address () {
-      try {
-        const res = await getCityList()
-        console.log(res)
-        this.$router.push({
-          path: '/city'
-        })
-      } catch (error) {
-        console.log(error)
-      }
+    address () {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 1500
+      })
+      this.$router.push({
+        path: '/city'
+      })
+    },
+    toMap () {
+      this.$router.push('/map')
     }
   }
 }

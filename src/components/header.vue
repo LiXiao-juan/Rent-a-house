@@ -5,7 +5,8 @@
     left-arrow
     @click-left="onClickLeft"
     class="navbar1"
-/>
+    fixed
+  />
   </div>
 </template>
 
@@ -28,6 +29,7 @@ export default {
 <style scoped lang="less">
 .navbar1{
     background-color: #21b97a;
+    z-index: 999;
    :deep(.van-nav-bar__title){
     color: #fff;
     }

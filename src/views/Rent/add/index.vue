@@ -1,23 +1,23 @@
 <template>
   <div>
-     <!-- 复用组件 -->
-    <Header title="发布房源"></Header>
-    <van-cell-group>
-      <van-cell title="房源信息" style="color:#21b97a"/>
-      <van-cell title="小区名称" is-link value="请输入小区名称" />
-    </van-cell-group>
+    <keep-alive>
+      <component :is="comName"></component>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import Header from '@/components/header.vue'
+import Add from '@/views/Rent/add/add.vue'
 export default {
+  data() {
+    return {
+      comName: 'Add'
+    }
+  },
   components: {
-    Header
+    Add
   }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

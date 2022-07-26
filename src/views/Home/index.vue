@@ -15,7 +15,7 @@
 <div class="main-nav">
   <div class="nav-item" >
     <!-- 上半区 -->
-    <div class="round">
+    <div class="round" >
       <van-icon name="wap-home-o" />
     </div>
     <!-- 文本区 -->

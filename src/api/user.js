@@ -16,3 +16,24 @@ export const login = (username, password) => {
     }
   })
 }
+// 房屋是否收藏
+export const shoc = (id) => {
+  return request({
+    method: 'GET',
+    url: '/user/favorites/' + id + ''
+  })
+}
+// 添加收藏
+export const addSc = (id) => {
+  return request({
+    method: 'POST',
+    url: '/user/favorites/' + id + ''
+  })
+}
+// 删除收藏
+export const deleteSc = (id) => {
+  return request({
+    method: 'DELETE',
+    url: '/user/favorites/' + id + ''
+  })
+}
